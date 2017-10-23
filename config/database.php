@@ -50,7 +50,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'strict' => true,
+            'strict' => true, //Cambiar el comportamiento de la base de datos para la clausula GROUP BY
             'engine' => null,
         ],
 

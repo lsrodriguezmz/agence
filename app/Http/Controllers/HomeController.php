@@ -69,9 +69,10 @@ class HomeController extends Controller
         
         //opciones checkbox
         $elegidos = $request->input('elegir');
-        $in = '"'.implode('","', $elegidos).'"';// VALIDAR QUE NO ESTE VACIO
+        $in = '"'.implode('","', $elegidos).'"';
         //dd($femesde, $elegidos);
         
+        //Usar sentecia dependiendo de la configuracion global del servidor Mysql, conjuntamente con config/database.php:53
         DB::select('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""));');
 
         $consultores_aux = DB::select('SELECT u.no_usuario AS nombre_aux
@@ -167,7 +168,7 @@ class HomeController extends Controller
             ->legend(false)
             ->labels(collect($barras)->pluck('consultor'))
             ->values(collect($barras)->pluck('ganancia_neta'))
-            ->promedio(collect($promedio)->pluck('costo_fijo_promedio')->pop());
+            ->promedio(collect($promedio)->pluck('costo_fijo_promedio')->pop());//Funcion agregada a la libreria para aceptar promedios dinamicos.
 
 
         return view('grafica', ['consultores' => $consultores, 'meses' => $meses, 'años' => $años, 'chart' => $chart]);
@@ -197,7 +198,7 @@ class HomeController extends Controller
         
         //opciones checkbox
         $elegidos = $request->input('elegir');
-        $in = '"'.implode('","', $elegidos).'"';// VALIDAR QUE NO ESTE VACIO
+        $in = '"'.implode('","', $elegidos).'"';
         //dd($femesde, $elegidos);
 
         $pizzas = DB::select('SELECT u.no_usuario AS consultor,

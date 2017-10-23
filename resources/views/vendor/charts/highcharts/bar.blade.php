@@ -52,7 +52,7 @@
                         x: 0
                     },
                     color: 'green',
-                    value: '{!! $model->promedio !!}', // Promedio
+                    value: '{!! $model->promedio !!}', // Valor del promedio
                     width: '2',
                     zIndex: 4
                 }],
